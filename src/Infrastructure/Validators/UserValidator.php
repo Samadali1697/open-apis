@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Infraustructure\Validators;
+namespace App\Infrastructure\Validators;
 
-use App\Infraustructure\Dto\UserDto;
+use App\Infrastructure\Dto\UserDto;
 
 class UserValidator {
 

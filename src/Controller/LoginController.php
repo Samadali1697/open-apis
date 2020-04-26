@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Application\LoginService;
-use App\Infraustructure\Dto\UserDto;
-use App\Infraustructure\Validators\UserValidator;
+use App\Infrastructure\Dto\UserDto;
+use App\Infrastructure\Validators\UserValidator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Application;
 
-use App\Infraustructure\Dto\UserDto;
-use App\Infraustructure\Validators\UserValidator;
+use App\Infrastructure\Dto\UserDto;
+use App\Infrastructure\Validators\UserValidator;
 
 class LoginService {
 
