@@ -5,8 +5,9 @@ namespace App\Controller;
 
 use App\Application\LoginService;
 use App\Infraustructure\Dto\UserDto;
-use Symfony\Component\HttpFoundation\Response;
+use App\Infraustructure\Validators\UserValidator;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginController {
   private const USER_NAME = 'username';
@@ -29,7 +30,8 @@ class LoginController {
     $username = json_decode($request->getContent(), true)[self::USER_NAME];
     $password = json_decode($request->getContent(), true)[self::PASSWORD];
 
-    $loginService = new LoginService();
+    $userValidator = new UserValidator();
+    $loginService = new LoginService($userValidator);
     $response = $loginService->login(new UserDto($username, $password));
 
     return new Response($response);
