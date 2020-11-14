@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace App\Application;
 
-use App\Infrastructure\Dto\UserDto;
+use App\Domain\LoginService AS DomainService;
+use App\Infrastructure\DTO\UserDto;
 use App\Infrastructure\Validators\UserValidator;
 
 class LoginService {
@@ -31,6 +32,7 @@ class LoginService {
       return 'Invalid input: ' . $userValidatorData;
     }
 
-    return 'Hi '. $userDto->getUsername(). ' pass: '. $userDto->getPassword();
+    $loginService = new DomainService();
+    return $loginService->login($userDto);
   }
 }
