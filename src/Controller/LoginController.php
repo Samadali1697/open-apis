@@ -24,8 +24,16 @@ class LoginController {
    */
   private $userValidator;
 
-  public function __construct() {
-
+  /**
+   * @param LoginService  $loginService  .
+   * @param UserValidator $userValidator .
+   */
+  public function __construct(
+    LoginService $loginService,
+    UserValidator $userValidator
+  ) {
+    $this->loginService = $loginService;
+    $this->userValidator = $userValidator;
   }
 
   /**
@@ -39,9 +47,7 @@ class LoginController {
       $username = json_decode($request->getContent(), true)[self::USER_NAME];
       $password = json_decode($request->getContent(), true)[self::PASSWORD];
 
-      $userValidator = new UserValidator();
-      $loginService = new LoginService($userValidator);
-      $response = $loginService->login(new UserDto($username, $password));
+      $response = $this->loginService->login(new UserDto($username, $password));
 
       return new Response($response);
     }
@@ -49,5 +55,4 @@ class LoginController {
       echo $e;
     }
   }
-
 }

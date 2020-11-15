@@ -8,6 +8,10 @@ use App\Infrastructure\DTO\UserDto;
 use App\Infrastructure\Validators\UserValidator;
 
 class LoginService {
+  /**
+   * @var DomainService
+   */
+  private $domainService;
 
   /**
    * @var UserValidator
@@ -15,9 +19,14 @@ class LoginService {
   private $validator;
 
   /**
-   * @param UserValidator $validator .
+   * @param DomainService $domainService .
+   * @param UserValidator $validator     .
    */
-  public function __construct(UserValidator $validator) {
+  public function __construct(
+    DomainService $domainService,
+    UserValidator $validator
+  ) {
+    $this->domainService = $domainService;
     $this->validator = $validator;
   }
 
@@ -32,7 +41,6 @@ class LoginService {
       return 'Invalid input: ' . $userValidatorData;
     }
 
-    $loginService = new DomainService();
-    return $loginService->login($userDto);
+    return $this->domainService->login($userDto);
   }
 }
